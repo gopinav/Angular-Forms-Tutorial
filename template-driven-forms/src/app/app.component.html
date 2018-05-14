@@ -1,1 +1,51 @@
-<button class="btn btn-dark">Bootstrap button</button>
+<div class="container-fluid">
+  <h2>Application Form</h2>
+  <form>
+
+    <div class="form-group">
+      <label>Name</label>
+      <input type="text" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label>Phone</label>
+      <input type="phone" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <select class="custom-select">
+        <option selected>I am interested in</option>
+        <option value="1">Angular</option>
+        <option value="2">React</option>
+        <option value="3">Vue</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label>Time preference</label>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="time-preference" value="option1">
+        <label class="form-check-label">Morning (9AM - 12PM)</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="time-preference" value="option2">
+        <label class="form-check-label">Evening (5PM - 8PM)</label>
+      </div>
+    </div>
+
+    <div class="form-check mb-3">
+      <input class="form-check-input" type="checkbox">
+      <label class="form-check-label">
+        Send me promotional offers
+      </label>
+    </div>
+
+    <button class="btn btn-primary" type="submit">Submit form</button>
+
+  </form>
+</div>
