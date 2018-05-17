@@ -1,25 +1,26 @@
 <div class="container-fluid">
   <h2>Bootcamp Enrollment Form</h2>
+  {{userForm.value | json}}
   <form #userForm="ngForm">
 
     <div class="form-group">
       <label>Name</label>
-      <input type="text" class="form-control">
+      <input type="text" class="form-control" name="name" ngModel>
     </div>
 
     <div class="form-group">
       <label>Email</label>
-      <input type="email" class="form-control">
+      <input type="email" class="form-control" name="email" ngModel>
     </div>
 
     <div class="form-group">
       <label>Phone</label>
-      <input type="tel" class="form-control">
+      <input type="tel" class="form-control" name="phone" ngModel>
     </div>
 
     <div class="form-group">
-      <select class="custom-select">
-        <option selected>I am interested in</option>
+      <select class="custom-select" name="topic" ngModel>
+        <option selected value="">I am interested in</option>
         <option *ngFor="let topic of topics">{{ topic }}</option>
       </select>
     </div>
@@ -27,17 +28,17 @@
     <div class="mb-3">
       <label>Time preference</label>
       <div class="form-check">
-        <input class="form-check-input" type="radio" name="time-preference" value="option1">
+        <input class="form-check-input" type="radio" name="time-preference" value="morning" ngModel>
         <label class="form-check-label">Morning (9AM - 12PM)</label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="radio" name="time-preference" value="option2">
+        <input class="form-check-input" type="radio" name="time-preference" value="evening" ngModel>
         <label class="form-check-label">Evening (5PM - 8PM)</label>
       </div>
     </div>
 
     <div class="form-check mb-3">
-      <input class="form-check-input" type="checkbox">
+      <input class="form-check-input" type="checkbox" name="subscribe" ngModel>
       <label class="form-check-label">
         Send me promotional offers
       </label>
