@@ -15,7 +15,7 @@
 
     <div class="form-group">
       <label>Phone</label>
-      <input type="tel" class="form-control" name="phone" [(ngModel)]="userModel.phone">
+      <input type="tel" #phone="ngModel" pattern="^\d{10}$" class="form-control" [class.is-invalid]="phone.invalid && phone.touched" name="phone" [(ngModel)]="userModel.phone">
     </div>
 
     <div class="form-group">
