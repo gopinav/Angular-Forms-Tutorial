@@ -54,4 +54,7 @@
     <button class="btn btn-primary" [disabled]="userForm.form.invalid || topicHasError" type="submit">Submit form</button>
 
   </form>
+  <div class="alert alert-danger" *ngIf="errorMsg">
+    {{errorMsg}}
+  </div>
 </div>
