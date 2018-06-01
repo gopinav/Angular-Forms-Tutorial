@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <h2>Bootcamp Enrollment Form</h2>
   
-  <form #userForm="ngForm">
+  <form #userForm="ngForm" *ngIf="!submitted" (ngSubmit)="onSubmit()" novalidate>
     
     <div class="form-group">
       <label>Name</label>
