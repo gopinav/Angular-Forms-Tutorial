@@ -19,4 +19,8 @@ export class AppComponent {
       this.topicHasError = false;
     }
   }
+
+  onSubmit() {
+    console.log(this.userModel)
+  }
 }
