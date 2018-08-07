@@ -5,6 +5,7 @@
     <div class="form-group">
       <label>Username</label>
       <input type="text" [class.is-invalid]="registrationForm.get('userName').invalid && registrationForm.get('userName').touched" formControlName="userName" class="form-control">
+      <small class="text-danger" [class.d-none]="registrationForm.get('userName').valid || registrationForm.get('userName').untouched">Username is required</small>
     </div>
 
     <div class="form-group">
