@@ -32,6 +32,10 @@ export class AppComponent {
     })
   });
 
+  get userName() {
+    return this.registrationForm.get('userName');
+  }
+
   constructor(private fb: FormBuilder) { }
 
   loadAPIData() {
