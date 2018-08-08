@@ -24,6 +24,19 @@
       <small class="text-danger" *ngIf="registrationForm.errors?.misMatch">Passwords do not match</small>
     </div>
 
+    <div class="form-group">
+      <label>Email</label>
+      <input type="text" [class.is-invalid]="email.invalid && email.touched" formControlName="email" class="form-control">
+      <small class="text-danger" [class.d-none]="email.valid || email.untouched">Email is required</small>
+    </div>
+
+    <div class="form-check mb-3">
+      <input class="form-check-input" formControlName="subscribe" (change)="updateValidation($event.target.checked)" type="checkbox">
+      <label class="form-check-label">
+        Send me promotional offers
+      </label>
+    </div>
+
     <div formGroupName="address">
 
       <div class="form-group">

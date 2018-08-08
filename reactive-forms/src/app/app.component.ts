@@ -26,6 +26,8 @@ export class AppComponent {
     userName: ['', [Validators.required, Validators.minLength(3), ForbiddenNameValidator(/password/)]],
     password: [''],
     confirmPassword: [''],
+    email: [''],
+    subscribe: [false],
     address: this.fb.group({
       city: [''],
       state: [''],
@@ -35,6 +37,10 @@ export class AppComponent {
 
   get userName() {
     return this.registrationForm.get('userName');
+  }
+
+  get email() {
+    return this.registrationForm.get('email');
   }
 
   constructor(private fb: FormBuilder) { }
@@ -56,5 +62,15 @@ export class AppComponent {
       password: 'test',
       confirmPassword: 'test'
     });
+  }
+
+  updateValidation(checked) {
+    const email = this.registrationForm.get('email');
+    if (checked) {
+      email.setValidators(Validators.required);
+    } else {
+      email.clearValidators();
+    }
+    email.updateValueAndValidity();
   }
 }
