@@ -20,7 +20,8 @@
 
     <div class="form-group">
       <label>Confirm Password</label>
-      <input type="password" formControlName="confirmPassword" class="form-control">
+      <input type="password" [class.is-invalid]="registrationForm.errors?.misMatch" formControlName="confirmPassword" class="form-control">
+      <small class="text-danger" *ngIf="registrationForm.errors?.misMatch">Passwords do not match</small>
     </div>
 
     <div formGroupName="address">
@@ -47,5 +48,6 @@
 
   </form>
 
+  {{registrationForm.status | json}}
   {{registrationForm.value | json}}
 </div>
