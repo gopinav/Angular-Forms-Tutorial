@@ -24,10 +24,14 @@
       <small class="text-danger" *ngIf="registrationForm.errors?.misMatch">Passwords do not match</small>
     </div>
 
-    <div class="form-group">
+    <div formArrayName="alternateEmails" class="form-group">
       <label>Email</label>
+      <button class="btn btn-secondary btn-sm m-2" (click)="addAlternateEmail()">Add e-mail</button>
       <input type="text" [class.is-invalid]="email.invalid && email.touched" formControlName="email" class="form-control">
       <small class="text-danger" [class.d-none]="email.valid || email.untouched">Email is required</small>
+      <div *ngFor="let email of alternateEmails.controls; let i=index">
+        <input type="text" class="form-control my-1" [formControlName]="i">
+      </div>
     </div>
 
     <div class="form-check mb-3">
