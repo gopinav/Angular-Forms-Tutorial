@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <h2>Registration Form</h2>
 
-  <form [formGroup]="registrationForm">
+  <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label>Username</label>
       <input type="text" [class.is-invalid]="userName.invalid && userName.touched" formControlName="userName" class="form-control">
@@ -24,12 +24,12 @@
       <small class="text-danger" *ngIf="registrationForm.errors?.misMatch">Passwords do not match</small>
     </div>
 
-    <div formArrayName="alternateEmails" class="form-group">
+    <div class="form-group">
       <label>Email</label>
-      <button class="btn btn-secondary btn-sm m-2" (click)="addAlternateEmail()">Add e-mail</button>
+      <button type="button" class="btn btn-secondary btn-sm m-2" (click)="addAlternateEmail()">Add e-mail</button>
       <input type="text" [class.is-invalid]="email.invalid && email.touched" formControlName="email" class="form-control">
       <small class="text-danger" [class.d-none]="email.valid || email.untouched">Email is required</small>
-      <div *ngFor="let email of alternateEmails.controls; let i=index">
+      <div formArrayName="alternateEmails" *ngFor="let email of alternateEmails.controls; let i=index">
         <input type="text" class="form-control my-1" [formControlName]="i">
       </div>
     </div>
@@ -60,7 +60,7 @@
 
     </div>
 
-    <button class="btn btn-primary" type="submit">Register</button>
+    <button class="btn btn-primary" [disabled]="!registrationForm.valid" type="submit">Register</button>
     <button (click)="loadAPIData()" class="btn btn-secondary ml-2" type="button">Load API Data</button>
 
   </form>
