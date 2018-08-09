@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { ForbiddenNameValidator } from './shared/user-name.validator';
@@ -9,8 +9,9 @@ import { PasswordValidator } from './shared/password.validator';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
+  registrationForm: FormGroup;
   // registrationForm = new FormGroup({
   //   userName: new FormControl('Vishwas'),
   //   password: new FormControl(''),
@@ -21,19 +22,33 @@ export class AppComponent {
   //     postalCode: new FormControl('')
   //   })
   // });
+  constructor(private fb: FormBuilder) { }
 
-  registrationForm = this.fb.group({
-    userName: ['', [Validators.required, Validators.minLength(3), ForbiddenNameValidator(/password/)]],
-    password: [''],
-    confirmPassword: [''],
-    email: [''],
-    subscribe: [false],
-    address: this.fb.group({
-      city: [''],
-      state: [''],
-      postalCode: ['']
-    })
-  }, {validator: PasswordValidator});
+  ngOnInit() {
+    this.registrationForm = this.fb.group({
+      userName: ['', [Validators.required, Validators.minLength(3), ForbiddenNameValidator(/password/)]],
+      password: [''],
+      confirmPassword: [''],
+      email: [''],
+      subscribe: [false],
+      address: this.fb.group({
+        city: [''],
+        state: [''],
+        postalCode: ['']
+      })
+    }, { validator: PasswordValidator });
+
+    this.registrationForm.get('subscribe').valueChanges
+      .subscribe(checkedValue => {
+        const email = this.registrationForm.get('email');
+        if (checkedValue) {
+          email.setValidators(Validators.required);
+        } else {
+          email.clearValidators();
+        }
+        email.updateValueAndValidity();
+      });
+  }
 
   get userName() {
     return this.registrationForm.get('userName');
@@ -42,8 +57,6 @@ export class AppComponent {
   get email() {
     return this.registrationForm.get('email');
   }
-
-  constructor(private fb: FormBuilder) { }
 
   loadAPIData() {
     // this.registrationForm.setValue({
@@ -64,13 +77,4 @@ export class AppComponent {
     });
   }
 
-  updateValidation(checked) {
-    const email = this.registrationForm.get('email');
-    if (checked) {
-      email.setValidators(Validators.required);
-    } else {
-      email.clearValidators();
-    }
-    email.updateValueAndValidity();
-  }
 }
